@@ -1,0 +1,39 @@
+<div class="container">
+  <form (ngSubmit) = "onSubmit(formLogin)" #formLogin = "ngForm">
+    <legend class="text-center">Login</legend>
+
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="text" class="form-control" name="email" placeholder="Email" ngModel #txtEmail="ngModel" required email>
+      <small *ngIf="txtEmail.touched && txtEmail?.errors?.required">
+        Email is required.
+      </small>
+      <small *ngIf="txtEmail.touched && txtEmail?.errors?.email">
+        Email is invalid.
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="">Password</label>
+      <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Password" ngModel #txtPasswd="ngModel" required minlength="6" pattern="[a-z]*">
+      <small *ngIf="txtPasswd.touched && txtPasswd?.errors?.required">
+        Password is required.
+      </small>
+    </div>
+
+    <div ngModelGroup = "subjects">
+      <label>  <input type="checkbox" ngModel name="Angular">
+        Angular</label>
+      <label> <input type="checkbox" ngModel name="ReactJS">
+        ReactJS</label>
+       <label><input type="checkbox" ngModel name="NodeJS">
+        NodeJS</label>
+
+
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+    <!-- [disabled]= "formLogin.invalid" -->
+  </form>
+  <p>{{ formLogin.value | json}}</p>
+
+</div>

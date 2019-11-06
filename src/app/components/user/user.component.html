@@ -1,0 +1,9 @@
+<input type="text" name="" id="" placeholder="username" (keyup)="showEvent($event)">
+<h3>Your name is: {{yourname}}</h3>
+<input type="text" name="" id="" placeholder="email" [(ngModel)]="youremail" #txtUsername>
+<h3 [ngStyle]="youremail.length % 2 === 0 ? eventStyle : oddStyle">Your email is: {{youremail}}</h3>
+<code>{{txtUsername.value | json}}</code>
+<div [class]="'circle'"></div>
+<div [class.circle]="!isHightLight" [class.square]="isHightLight"></div>
+<div [ngClass]="currentClass"></div>
+
