@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient,HttpHeaderResponse, HttpHeaders} from '@angular/common/http'
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,22 @@ export class LoginComponent implements OnInit {
   email = '';
   password = '';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
   onSubmit(formLogin) {
-    console.log(formLogin);
-    throw new Error('Form is invalid');
-  }
 
+
+    const url = 'http://localhost:3000/signin';
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const body =  JSON.stringify(formLogin.value);
+    return this.http.post(url, body, { headers}).subscribe((response: Response) =>{
+      console.log(response.json());
+    });
+  }
+  postToServer(){
+
+  }
 }
