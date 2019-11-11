@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const port = 3000;
-const jsonParser = require('body-parser').json;
-app.get('/', (req, res) => res.send('Hello World!'))
+const jsonParser = require('body-parser').json();
+app.get('/',jsonParser,(req, res) => res.send(req.body))
 
 app.use((req,res,next)=>{
   res.header('Access-Control-Allow-Origin','*');
@@ -10,7 +10,7 @@ app.use((req,res,next)=>{
   next();
 })
 
-app.post('/',jsonParser,(req,res)=>{
+app.post('/signin',jsonParser,(req,res)=>{
   res.send(req.body);
 })
 
