@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private routes: ActivatedRoute) { }
 
   ngOnInit() {
+    this.routes.paramMap.subscribe((params: ParamMap) => {
+      const id = params.get('id');
+      console.log(id);
+
+    });
   }
 
 }
